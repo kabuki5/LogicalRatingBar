@@ -24,6 +24,8 @@ import java.util.ArrayList;
  */
 public class CustomRatingBar extends LinearLayout implements View.OnClickListener {
 
+    private static final long ANIMATION_SPEED = 150;
+
     public interface OnRatingChangeListener {
         void onRatingChanged(View view, float rating);
     }
@@ -39,6 +41,8 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
     private Drawable mLastImageFull;
     private Drawable mLastImageEmpty;
     private OnRatingChangeListener mCallback;
+    private boolean isInAnimation;
+
 
     public CustomRatingBar(Context context) {
         super(context);
@@ -84,6 +88,12 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
         } finally {
             array.recycle();
         }
+        setupMeasurements();
+    }
+
+    private void setupMeasurements() {
+        setGravity(Gravity.CENTER);
+//        setBackgroundColor(getResources().getColor(R.color.colorAccent));
     }
 
     public void setMaxItems(int maxItems) {
@@ -104,12 +114,13 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
         setGravity(Gravity.CENTER_HORIZONTAL);
         removeAllViews();
         mImages = new ArrayList<>();
-        //int half = R.drawable.machine_big_half;
 
         FrameLayout.LayoutParams imageParams = new FrameLayout.LayoutParams((int) mIconSize, (int) mIconSize);
-        imageParams.gravity = Gravity.CENTER_HORIZONTAL;
+        imageParams.gravity = Gravity.CENTER;
+        int margin = (int) (mIconSize / 2);
+        imageParams.setMargins(0, margin, 0, margin);
 
-        LayoutParams frameLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
+        LayoutParams frameLayoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f);
         int integerPart = (int) mRating;
 //        double fractional = mRating - integerPart;
 
@@ -125,18 +136,15 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
             //creating image outer container
             frameLayout = new FrameLayout(mContext);
             frameLayout.setLayoutParams(frameLayoutParams);
-
             //creating ImageView
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(imageParams);
-
             //adding imageView to layout container
             frameLayout.addView(imageView);
             frameLayout.setTag(i);
             //setting click callback
             if (clickable)
                 frameLayout.setOnClickListener(this);
-
             //adding
             mImages.add(imageView);
             Drawable resource;
@@ -169,6 +177,8 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        if(isInAnimation)
+            return;
         Drawable resource;
         int position = (int) view.getTag();
         mRating = position + 1;
@@ -201,14 +211,20 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
     private Drawable animResource;
 
     public void animateViews() {
+        if(isInAnimation)
+            return;
+        animCounter = 0;
+        reverseCount = false;
 
         animResource = mContext.getResources().getDrawable(R.drawable.s_f);
-
+        isInAnimation = true;
         final Handler handler = new Handler();
-        handler.post(new Runnable() {
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
 
+                if (animCounter == -1)
+                    return;
                 if (animCounter == mImages.size() - 1 && !reverseCount) {
                     reverseCount = true;
                     animResource = mLastImageFull;
@@ -233,10 +249,14 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
                     animCounter++;
 
                 if (animCounter != -1)
-                    handler.postDelayed(this, 200);
+                    handler.postDelayed(this, ANIMATION_SPEED);
+                else {
+                    isInAnimation = false;
+                }
             }
-        });
+        }, 500);
     }
+
 
 
     public void setOnRatingChangeListener(OnRatingChangeListener listener) {
