@@ -1,6 +1,6 @@
 # CustomRatingBar
 
-Allows you customize an rating bar with your own empty and full icons and sizes.
+Allows you customize a rating bar with your own empty and full icons and sizes.
 
 Usage: 
 ```xml
