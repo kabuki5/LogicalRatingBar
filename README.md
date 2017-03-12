@@ -1,1 +1,4 @@
 # CustomRatingBar
+
+
+Usage example:
