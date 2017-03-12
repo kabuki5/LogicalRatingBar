@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomRatingBar">
+        <attr name="imageFull" format="integer"/>
+        <attr name="imageEmpty" format="integer"/>
+        <attr name="initRating" format="integer"/>
+        <attr name="maxItems" format="integer"/>
+        <attr name="clickable" format="boolean"/>
+        <attr name="iconSize" format="float"/>
+    </declare-styleable>
+
+</resources>
