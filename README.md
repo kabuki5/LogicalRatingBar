@@ -3,6 +3,7 @@
 Allows you customize an rating bar with your own empty and full icons and sizes.
 
 Usage: 
+```xml
 
 <com.kabuki5.logicalratingbar.CustomRatingBar
         android:layout_width="match_parent"
@@ -13,3 +14,4 @@ Usage:
         app:imageFull="@drawable/ic_heart_full"
         app:initRating="5"
         app:maxItems="5" />
+        
