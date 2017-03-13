@@ -30,3 +30,17 @@ compile 'com.kabuki5:logical_rating_bar:1.0'
         app:initRating="5"
         app:maxItems="5" />
 ```
+At the activity or fragment register callback:
+```xml
+
+CustomRatingBar ratingBar = (CustomRatingBar) findViewById(R.id.rating_bar);
+ratingBar.setOnRatingChangeListener(new CustomRatingBar.OnRatingChangeListener() {
+
+        @Override
+        public void onRatingChanged(View view, float rating) {
+           //Do stuff
+        }
+
+    });
+```
+    
