@@ -2,7 +2,22 @@
 
 Allows you customize a rating bar with your own empty and full icons and sizes.
 
-Usage: 
+# Gradle:
+
+compile 'com.kabuki5:logical_rating_bar:1.0'
+
+# Maven:
+
+```xml
+<dependency>
+  <groupId>com.kabuki5</groupId>
+  <artifactId>logical_rating_bar</artifactId>
+  <version>1.0</version>
+  <type>pom</type>
+</dependency>
+```
+
+
 ```xml
 
 <com.kabuki5.logicalratingbar.CustomRatingBar
@@ -14,4 +29,4 @@ Usage:
         app:imageFull="@drawable/ic_heart_full"
         app:initRating="5"
         app:maxItems="5" />
-        
+```
