@@ -17,7 +17,7 @@ compile 'com.kabuki5:logical_rating_bar:1.0'
 </dependency>
 ```
 
-
+# Usage
 ```xml
 
 <com.kabuki5.logicalratingbar.CustomRatingBar
