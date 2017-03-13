@@ -1,4 +1,4 @@
-# CustomRatingBar
+# Logical Rating Bar
 
 Allows you customize a rating bar with your own empty and full icons and sizes.
 
