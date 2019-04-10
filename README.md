@@ -4,7 +4,7 @@ Allows you customize a rating bar with your own empty and full icons and sizes.
 
 # Gradle:
 
-compile 'com.kabuki5:logical_rating_bar:1.0'
+implementation 'com.kabuki5:logical_rating_bar:1.0'
 
 # Maven:
 
