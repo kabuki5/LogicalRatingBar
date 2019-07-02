@@ -6,7 +6,7 @@
         <attr name="initRating" format="integer"/>
         <attr name="maxItems" format="integer"/>
         <attr name="clickable" format="boolean"/>
-        <attr name="iconSize" format="dimension"/>
+        <attr name="imageSize" format="dimension"/>
     </declare-styleable>
 
 </resources>

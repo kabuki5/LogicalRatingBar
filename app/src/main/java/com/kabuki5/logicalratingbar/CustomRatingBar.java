@@ -34,7 +34,7 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
     private ArrayList<ImageView> mImages;
     private Drawable mFullImageResource;
     private Drawable mEmptyImageResource;
-//    private Drawable mHalfImageResource;
+    //    private Drawable mHalfImageResource;
     private float mIconSize;
     private OnRatingChangeListener mCallback;
     private boolean isInAnimation;
@@ -73,7 +73,7 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
             mRating = array.getInteger(R.styleable.CustomRatingBar_initRating, 0);
             maxItems = array.getInteger(R.styleable.CustomRatingBar_maxItems, 5);
             clickable = array.getBoolean(R.styleable.CustomRatingBar_clickable, false);
-            mIconSize = array.getDimension(R.styleable.CustomRatingBar_iconSize, mContext.getResources().getDimension(R.dimen.rating_bar_item));
+            mIconSize = array.getDimension(R.styleable.CustomRatingBar_imageSize, mContext.getResources().getDimension(R.dimen.rating_bar_item));
 
         } finally {
             array.recycle();
@@ -149,8 +149,7 @@ public class CustomRatingBar extends LinearLayout implements View.OnClickListene
                 else
                     resource = mFullImageResource;
                 fractional = 0;
-            }
-            else {
+            } else {
                 resource = mEmptyImageResource;
             }
             imageView.setImageDrawable(resource);
